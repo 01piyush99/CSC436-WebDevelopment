@@ -6,17 +6,19 @@ const Register = ({ dispatch }) => {
     password: "",
     passwordRepeat: "",
   });
+  
+  const handleSubmit=(e)=>{
+    e.preventDefault(); 
+    dispatch({ type: 'REGISTER',username:formData.username });
+  }
   return (
     <form className="register"
-      onSubmit={(e) => {
-        e.preventDefault();
-        dispatch({ type: 'REGISTER',username:formData.username });
-      }}
+      onSubmit={handleSubmit}
     >
       <h2>Register</h2>
       <div>
 
-      <label htmlFor="register-username">Username:</label>
+      <label htmlFor="register-username">Username: </label>
       <input
         type="text"
         value={formData.username}
@@ -27,7 +29,7 @@ const Register = ({ dispatch }) => {
         </div>
         <div>
 
-      <label htmlFor="register-password">Password:</label>
+      <label htmlFor="register-password">Password: </label>
       <input
         type="password"
         name="register-password"
@@ -38,7 +40,7 @@ const Register = ({ dispatch }) => {
       </div>
         <div>
           
-      <label htmlFor="register-password-repeat">Repeat password:</label>
+      <label htmlFor="register-password-repeat">Repeat password: </label>
       <input
         type="password"
         name="register-password-repeat"
