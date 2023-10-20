@@ -5,13 +5,18 @@ import Register from "./Register";
 
 const UserBar = ({ user, dispatch }) => {
     if (user) {
-    return <Logout user={user} dispatch={dispatch} />
+    return (<>
+    <Logout user={user} dispatch={dispatch} />
+    </>
+    )
     } else {
-    return (
+    return (<>
+    <h1 style={{color:"white"}}> Todo App</h1>
     <div className="loginregister">
     <Login dispatch={dispatch} />
     <Register dispatch={dispatch} />
     </div>
+    </>
     )
     }
 };

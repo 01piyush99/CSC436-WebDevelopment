@@ -1,6 +1,7 @@
 function userReducer(state, action) {
   switch (action.type) {
     case "LOGIN":
+      return action.username; 
     case "REGISTER":
       return action.username;
     case "LOGOUT":
@@ -22,7 +23,7 @@ function todosReducer(state, action) {
         dateCompleted: "",
       };
       return [newTodo, ...state];
-    case "TASK_MANIPULATED":
+    case "TOGGLE_TODO":
         date=new Date();
       const taskIndex = state.findIndex((todo) => todo.title === action.title);
       if (taskIndex === -1) {
@@ -38,6 +39,9 @@ function todosReducer(state, action) {
       const newState = [...state];
       newState[taskIndex] = updatedTask;
       return newState;
+    case "DELETE_TODO":
+      const stateAfterDeleting=state.filter((todo)=>todo.title!==action.title);
+      return stateAfterDeleting;
     default:
       return state;
   }
