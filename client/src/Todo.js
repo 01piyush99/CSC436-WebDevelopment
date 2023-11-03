@@ -1,9 +1,11 @@
-import React  from "react";
+import React,{useContext} from 'react';
+import { stateContext } from './contexts';
 import { v4 as uuidv4 } from 'uuid';
 import './Todo.css';
 
-const Todo = ({ title, description, author,dateCreated,complete,dateCompleted ,dispatch}) => {
+const Todo = ({ title, description, author,dateCreated,complete,dateCompleted }) => {
   const uid=uuidv4();
+  const {dispatch}=useContext(stateContext);
   const handleCheck=(e)=> {
     dispatch({type:"TOGGLE_TODO",title:title});
   }

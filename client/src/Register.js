@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
+import { stateContext } from "./contexts";
 
-const Register = ({ dispatch }) => {
+const Register = () => {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
     passwordRepeat: "",
   });
-  
+  const {dispatch}=useContext(stateContext);
   const handleSubmit=(e)=>{
     e.preventDefault(); 
     dispatch({ type: 'REGISTER',username:formData.username });

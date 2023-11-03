@@ -1,10 +1,11 @@
-import React,{useState} from "react";
+import React,{useState,useContext} from "react";
+import { stateContext } from "./contexts";
 
-const Login = ({dispatch}) => {
+const Login = () => {
     const [username,setUsername]=useState('')
 
     function handleUsername(evt){ setUsername(evt.target.value) }
-    
+    const {dispatch}=useContext(stateContext);
     const handleSubmit=(e)=>{
       e.preventDefault(); 
       dispatch({ type: 'LOGIN', username });

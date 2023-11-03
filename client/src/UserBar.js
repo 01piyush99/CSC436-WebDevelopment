@@ -1,20 +1,23 @@
-import React from "react";
+import React,{useContext} from "react";
 import Login from "./Login";
 import Logout from "./Logout";
 import Register from "./Register";
+import { stateContext } from "./contexts";
 
-const UserBar = ({ user, dispatch }) => {
+const UserBar = () => {
+    const {state}=useContext(stateContext);
+    const {user}=state;
     if (user) {
     return (<>
-    <Logout user={user} dispatch={dispatch} />
+    <Logout />
     </>
     )
     } else {
     return (<>
     <h1 style={{color:"white"}}> Todo App</h1>
     <div className="loginregister">
-    <Login dispatch={dispatch} />
-    <Register dispatch={dispatch} />
+    <Login />
+    <Register />
     </div>
     </>
     )

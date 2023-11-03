@@ -1,6 +1,9 @@
-import React,{useState} from "react";
+import React,{useState,useContext} from "react";
+import { stateContext } from "./contexts";
 
-const AddTodo = ({ user,dispatch }) => {
+const AddTodo = () => {
+const {state,dispatch}=useContext(stateContext);
+const {user}=state;
 const [ title, setTitle ] = useState('')
 const [ description, setDescription ] = useState('')
 function handleTitle (evt) { setTitle(evt.target.value) }

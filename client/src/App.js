@@ -1,5 +1,6 @@
 import React from "react";
 import { useReducer,useEffect} from "react";
+import { stateContext } from "./contexts";
 import appReducer from "./reducers";
 import UserBar from "./UserBar";
 import AddTodo from "./AddTodo";
@@ -44,11 +45,13 @@ function App() {
     }
     }, [user])
   return (
+    <stateContext.Provider value={{state, dispatch}}>
     <div className="App">
-      <UserBar user={user} dispatch={dispatch} />
-      {user && <AddTodo user={user} todos={todos} dispatch={dispatch}/>}
-      {user && <TodoList todos={todos}  dispatch={dispatch}/>}
+      <UserBar />
+      {user && <AddTodo/>}
+      {user && <TodoList todos={todos} />}
     </div>
+    </stateContext.Provider>
   );
 }
 

@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import React from "react";
+import { stateContext } from "./contexts";
 
-const Logout = ({user, dispatch}) => {
+const Logout = () => {
+  const {state,dispatch}=useContext(stateContext);
+  const {user}=state;
   const handleSubmit=(e)=>{
     e.preventDefault(); 
     dispatch({ type: 'LOGOUT' });
