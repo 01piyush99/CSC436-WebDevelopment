@@ -1,14 +1,33 @@
-import React,{useState,useContext} from "react";
+import React,{useEffect,useState,useContext} from "react";
+import { useResource } from "react-request-hook";
 import { stateContext } from "./contexts";
 
 const Login = () => {
     const [username,setUsername]=useState('')
-
-    function handleUsername(evt){ setUsername(evt.target.value) }
+    // const [ loginFailed, setLoginFailed ] = useState(false);
+    const [ password, setPassword ] = useState('');
     const {dispatch}=useContext(stateContext);
+    const [user, login] = useResource(({username, password}) => ({
+      url: "/login",
+      method: "post",
+      data: { email: username, password },
+      }))
+      useEffect(() => {
+        if (user) {
+        if (user?.data?.user) {
+        // setLoginFailed(false);
+        dispatch({ type: "LOGIN", username: user.data.user.email });
+        }
+        //  else {
+        // setLoginFailed(true);
+        // }
+        }
+        }, [user,dispatch])
+    function handleUsername(evt){ setUsername(evt.target.value) }
+    function handlePassword (evt) { setPassword(evt.target.value) }
     const handleSubmit=(e)=>{
       e.preventDefault(); 
-      dispatch({ type: 'LOGIN', username });
+      login({username, password});
     }
   return (
     <form className="login" onSubmit={handleSubmit}>
@@ -19,9 +38,10 @@ const Login = () => {
       </div>
       <div>
       <label htmlFor="login-password">Password: </label>
-      <input type="password" name="login-password" id="login-password" />
+      <input type="password" name="login-password" value={password} onChange={handlePassword} id="login-password" />
       </div>
       <input type="submit" value="Login" disabled={username.length === 0}  />
+      {/* {loginFailed && <span style={{color:'red',fontWeight:'bold'}}>Incorrect password!! Try again.</span>}  */}
     </form>
   );
 };

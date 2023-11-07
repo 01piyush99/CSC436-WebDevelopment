@@ -1,24 +1,38 @@
-import React, { useState,useContext } from "react";
+import React, {useEffect, useState,useContext } from "react";
+import { useResource } from "react-request-hook";
 import { stateContext } from "./contexts";
 
 const Register = () => {
+  const {dispatch}=useContext(stateContext);
+  const [response,register] = useResource((username, password) => ({
+    url: "/users",
+    method: "post",
+    data:{email: username,password },
+    }));
+    useEffect(() => {
+      if (response && response.data) {
+      dispatch({ type: "REGISTER", username: response.data.user.email });
+      }
+      }, [response,dispatch]);
   const [formData, setFormData] = useState({
     username: "",
     password: "",
     passwordRepeat: "",
   });
-  const {dispatch}=useContext(stateContext);
-  const handleSubmit=(e)=>{
-    e.preventDefault(); 
-    dispatch({ type: 'REGISTER',username:formData.username });
-  }
+  // const [error, setError] = useState(null);
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // setError(null);
+    register(formData.username, formData.password);
+};
   return (
     <form className="register"
       onSubmit={handleSubmit}
     >
       <h2>Register</h2>
       <div>
-
+      {/* {error && <div className="error">{error}</div>} */}
       <label htmlFor="register-username">Username: </label>
       <input
         type="text"

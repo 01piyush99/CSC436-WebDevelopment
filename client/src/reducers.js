@@ -19,7 +19,7 @@ function todosReducer(state, action) {
         description: action.description,
         author: action.author,
         dateCreated: `${date.toDateString()} at ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
-        complete: false,
+        isCompleted: false,
         dateCompleted: "",
       };
       return [newTodo, ...state];
@@ -31,8 +31,8 @@ function todosReducer(state, action) {
       }
       const updatedTask = {
         ...state[taskIndex],
-        complete: !state[taskIndex].complete,
-        dateCompleted: !state[taskIndex].complete
+        isCompleted: !state[taskIndex].isCompleted,
+        dateCompleted: !state[taskIndex].isCompleted
           ? `${date.toDateString()} at ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
           : "",
       };
@@ -42,6 +42,8 @@ function todosReducer(state, action) {
     case "DELETE_TODO":
       const stateAfterDeleting=state.filter((todo)=>todo.title!==action.title);
       return stateAfterDeleting;
+    case "FETCH_TODOS":
+      return action.todos;
     default:
       return state;
   }

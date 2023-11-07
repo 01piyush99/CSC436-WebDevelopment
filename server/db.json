@@ -1,0 +1,110 @@
+{
+  "todos": [
+    {
+      "title": "Learn React",
+      "description": "It is important for Web development",
+      "author": "x@123.com",
+      "dateCreated": "Tue Nov 07 2023 at 19:30:22",
+      "isCompleted": true,
+      "dateCompleted": "Wed Nov 08 2023 at 1:0:13",
+      "id": 1
+    },
+    {
+      "title": "Drink 4 Liter of water today",
+      "description": "It is necessary for a healthy routine",
+      "author": "x@123.com",
+      "dateCreated": "Tue Nov 07 2023 at 19:31:26",
+      "isCompleted": true,
+      "dateCompleted": "Wed Nov 08 2023 at 1:5:36",
+      "id": 2
+    },
+    {
+      "title": "Do not eat",
+      "description": "jnk",
+      "author": "x@123.com",
+      "dateCreated": "Tue Nov 07 2023 at 19:33:32",
+      "isCompleted": false,
+      "dateCompleted": null,
+      "id": 3
+    },
+    {
+      "title": "hbj",
+      "description": "hbj",
+      "author": "Prerit@hbk.com",
+      "dateCreated": "Wed Nov 08 2023 at 1:4:29",
+      "isCompleted": false,
+      "dateCompleted": "",
+      "id": 4
+    }
+  ],
+  "users": [
+    {
+      "email": "bkb@hj.com",
+      "password": "$2a$10$nUQzcOiobFVDJQ9BCDLTkOyeXBt.iuwegUIu8Bc/Kw4SBjRoA3Nj2",
+      "ds": "fdef",
+      "id": 2
+    },
+    {
+      "email": "kb@hj.com",
+      "password": "$2a$10$NVYQ76cGDKrxFOqGkuq7NuXozEPRo0BgbidcvUbeoWZWic7kJWinK",
+      "ds": "fdef",
+      "id": 3
+    },
+    {
+      "email": "Prerit@hbk.com",
+      "password": "$2a$10$liZ9rWbUoEtvTqaYBwjCQe0fOElRR5lfIhvBNowvoYmuvP1o2kSWO",
+      "id": 4
+    },
+    {
+      "email": "x@123.com",
+      "password": "$2a$10$1ZPPcHUjc2EoIAJTdSW7p.lUugLq0ZfMCyAvyXzB.Go5jR4YiuZD.",
+      "id": 5
+    },
+    {
+      "email": "kb@j.com",
+      "password": "$2a$10$wKbiAu/BUogy8UyqqjWlWezFSACGk7I3BOBrjnWUB3XtK34E58Z/O",
+      "ds": "fdknlnef",
+      "id": 6
+    },
+    {
+      "email": "Prerit@123.com",
+      "password": "$2a$10$3oc5PAHivSDAwsSos8hSKeBqrnwTbAhE1PRPN5fWFbg/vFxgspp3C",
+      "id": 7
+    },
+    {
+      "email": "P@123.ci",
+      "password": "$2a$10$RKmod8nUjzIkLKCe7xA/5OG/PSs.Qqa9VMeMXN.CUJJed.TpWGM5m",
+      "id": 8
+    },
+    {
+      "email": "a@b.com",
+      "password": "$2a$10$JiZmoofOqMmmN5gKUvuhy.1cieli1sNr52UClEzbsJ92ePumh71YO",
+      "id": 9
+    },
+    {
+      "email": "jnknkn@1",
+      "password": "$2a$10$OnMcw3nszBy4.TcJ4s5mdeyEx5cXKiAe4ZUUXZVHOyGr.stC0Ej7K",
+      "id": 10
+    },
+    {
+      "email": "jnk@hk",
+      "password": "$2a$10$.M0/U/pTHd13G30Z1xVSqe1jB3Yx2HyaArsS8JHQGLWMynyrr7gsS",
+      "id": 11
+    },
+    {
+      "email": "hhh@nj",
+      "password": "$2a$10$hKgpwNe81rMowAaBx1RIB.GBlIEG3/dNkgPpYq50GEZVQjRIAwaZi",
+      "id": 12
+    },
+    {
+      "email": "vdfg@wee",
+      "password": "$2a$10$whK4xYWB5To08QD03bEuFOMx9wIRice.L9TuLDi5SU13YLbrFEEGO",
+      "id": 13
+    },
+    {
+      "email": "1@1122.com",
+      "password": "$2a$10$Il9chS6h1vO68p4Dum3UnukHh.0JLV3wlLx0g0hC2fOB54IDaCJSy",
+      "id": 14
+    }
+  ]
+}

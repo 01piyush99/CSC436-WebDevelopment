@@ -1,14 +1,30 @@
 import React,{useState,useContext} from "react";
+import { useResource } from "react-request-hook";
 import { stateContext } from "./contexts";
 
 const AddTodo = () => {
 const {state,dispatch}=useContext(stateContext);
 const {user}=state;
+const [ , addTodo ]=useResource(({ title,description, author,dateCreated,isCompleted,dateCompleted})=>({
+  url:'/todos',
+  method:'post',
+  data:{ title, description, author,dateCreated,isCompleted,dateCompleted }
+  }))
 const [ title, setTitle ] = useState('')
 const [ description, setDescription ] = useState('')
 function handleTitle (evt) { setTitle(evt.target.value) }
 function handleDescription (evt) { setDescription(evt.target.value) }
 function addTodoHandler () {
+  const date=new Date();
+const newTodo={
+  title,
+  description,
+  author: user,
+  dateCreated:`${date.toDateString()} at ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
+  isCompleted:false,
+  dateCompleted:''
+};
+addTodo(newTodo);
 dispatch({ type: 'ADD_TODO', title, description, author: user })
 }
   return (

@@ -1,5 +1,6 @@
 import React from "react";
 import { useReducer,useEffect} from "react";
+import {useResource} from 'react-request-hook'
 import { stateContext } from "./contexts";
 import appReducer from "./reducers";
 import UserBar from "./UserBar";
@@ -9,34 +10,19 @@ import "./App.css";
 
 
 function App() {
-  const initialTodos = [
-    {
-      title: "Learning React",
-      description : "hjvjb",
-      author: "Daniel Bugl",
-      dateCreated:"Fri Oct 06 2023 at 11:05:22",
-      isCompleted:false,
-      dateCompleted:""
-    },
-    {
-      title: "Keeping the DOM tree clean!",
-      description : "Component Reusability",
-      author: "Daniel Bugl",
-      dateCreated:"Fri Oct 06 2023 at 11:05:22",
-      isCompleted:false,
-      dateCompleted:""
-    },
-    {
-      title: "Make your components reusable!",
-      description : "Using React Fragments",
-      author: "Daniel Bugl",
-      dateCreated:"Fri Oct 06 2023 at 11:05:22",
-      isCompleted:false,
-      dateCompleted:""
-    },
-  ];
-  const [ state, dispatch ] = useReducer(appReducer, { user: '', todos: initialTodos })
-  const { user, todos } = state;
+  const [todoData,getTodo]=useResource(()=>({
+    url:'/todos',
+    method:'get'
+    }));
+
+    useEffect(getTodo,[getTodo]);
+    useEffect(()=>{
+      if (todoData.data && todoData){
+      dispatch({type:'FETCH_TODOS',todos:todoData.data.reverse()});
+      }
+    },[todoData]);      
+  const [state,dispatch]=useReducer(appReducer,{ user:'',todos:[]})
+  const {user,todos}=state;
   useEffect(() => {
     if (user) {
     document.title = `${user}’s Todo List`
