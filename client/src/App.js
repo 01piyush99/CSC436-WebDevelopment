@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useReducer,useEffect} from "react";
 import {useResource} from 'react-request-hook'
 import { stateContext } from "./contexts";
@@ -10,12 +10,13 @@ import "./App.css";
 
 
 function App() {
+  const [todoState,changeTodoState]=useState('');
   const [todoData,getTodo]=useResource(()=>({
     url:'/todos',
     method:'get'
     }));
 
-    useEffect(getTodo,[getTodo]);
+    useEffect(getTodo,[todoState]);
     useEffect(()=>{
       if (todoData.data && todoData){
       dispatch({type:'FETCH_TODOS',todos:todoData.data.reverse()});
@@ -34,7 +35,7 @@ function App() {
     <stateContext.Provider value={{state, dispatch}}>
     <div className="App">
       <UserBar />
-      {user && <AddTodo/>}
+      {user && <AddTodo changeTodoState={changeTodoState} />}
       {user && <TodoList todos={todos} />}
     </div>
     </stateContext.Provider>

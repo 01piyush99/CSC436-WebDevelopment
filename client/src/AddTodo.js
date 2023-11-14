@@ -2,7 +2,7 @@ import React,{useState,useContext} from "react";
 import { useResource } from "react-request-hook";
 import { stateContext } from "./contexts";
 
-const AddTodo = () => {
+const AddTodo = ({changeTodoState}) => {
 const {state,dispatch}=useContext(stateContext);
 const {user}=state;
 const [ , addTodo ]=useResource(({ title,description, author,dateCreated,isCompleted,dateCompleted})=>({
@@ -24,8 +24,9 @@ const newTodo={
   isCompleted:false,
   dateCompleted:''
 };
-addTodo(newTodo);
 dispatch({ type: 'ADD_TODO', title, description, author: user })
+addTodo(newTodo);
+changeTodoState(newTodo.dateCreated);
 }
   return (
     <form className="addtodo" onSubmit={(e) =>{e.preventDefault(); addTodoHandler(); setTitle(''); setDescription('');}}>

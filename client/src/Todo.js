@@ -11,28 +11,19 @@ const Todo = ({title, description, author,dateCreated,isCompleted,dateCompleted,
     url: `/todos/${id}`,
     method: 'delete',
   })); 
+  const [__,updateTodo]= useResource((id,data) => ({
+    url: `/todos/${id}`,
+    method: 'patch',
+    data:data
+  })); 
   const handleCheck = async (e) => {
     dispatch({ type: "TOGGLE_TODO", title: title });
-    try {
       const date=new Date();
-      const response=await fetch(`http://localhost:4000/todos/${id}`,{
-        method:'PATCH',
-        headers:{
-          'Content-Type':'application/json'
-        },
-        body: JSON.stringify({
-          isCompleted: !isCompleted,
-          dateCompleted: !isCompleted ? `${date.toDateString()} at ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}` : null,
-        }),
-      });
-
-      if (response.ok) {
-        const data=await response.json();
-        console.log(data);
-      } else console.error('Update request failed');
-    } catch (error){
-      console.error('An error occurred',error);
-    }
+      const data={
+        isCompleted: !isCompleted,
+        dateCompleted: !isCompleted ? `${date.toDateString()} at ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}` : null,
+      };
+    updateTodo(id,data);
   };
   const deleteTodoHandler=(e)=> {
     deleteTodo(id);
